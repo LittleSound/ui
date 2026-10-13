@@ -223,6 +223,15 @@ Props: `code`, `verificationUri`, `expiresAt?`, `hint`, `retryLoading?`,以及�
 不要合并。已知同形状旧写法:bots ACP 面板、onboarding Step4 —— 迁移前先做各自的
 行为盘点(ACP 有真 cancel API 和错误态)。
 
+**CodePanel** · `@felinic/ui`(`src/components/code-panel`)
+只读代码块 + 复制按钮:聊天代码块、要粘到终端运行的命令、配置片段都用它。外框是
+menu-shell 圆角(与 SettingsSection / SurfaceCard 同档,放在设置卡片旁边对得齐)。
+Props: `code`(复制的原文)、`copyLabel` / `copiedLabel` / `copyFailedMessage`(caller
+i18n)、`width: 'fit' | 'full'`(fit 贴合代码,聊天用;full 撑满行,对话框用)、`wrap`
+(一行长命令折行而不是横向滚动,含不可断的 key 也不会撑宽宿主)。语法高亮归 caller:
+把渲染好的内容放进默认 slot,不放则原样显示 `code`。不要再手写 `pre` + 绝对定位复制按钮。
+复制按钮单独是 **CopyButton**(同目录 `copy-button`),图标按钮 + 复制后打勾动效。
+
 **LabelSwap**(`@felinic/ui` 原语,非 apps/web owner,顺带登记防重造)
 会"换字"的内容槽:每个候选 label 一个具名 slot,`active` 指名当前项;各 label 保持
 自然宽度,切换时外壳宽度按 house spring 平滑过渡、label 交叉淡出。给 Connect↔Cancel
@@ -415,6 +424,7 @@ A stat / number tile?                           → MetricReadout (you own the g
 A vertical, centered entity/add tile?           → PersonaTile
 An error / warning / info notice?               → CalloutBanner (bare inside a host surface)
 A device-code "enter this code" moment?         → DeviceCodePanel
+Read-only code / a command to copy?             → CodePanel
 A label that swaps with state (Connect↔Cancel)? → LabelSwap (@felinic/ui)
 The page frame itself?                          → PageShell
 A pane with nothing to show (loading/empty)?    → PanePlaceholder (centered fill)
