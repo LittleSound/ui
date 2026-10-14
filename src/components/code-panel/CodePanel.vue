@@ -5,7 +5,8 @@
 // chat-code-block.vue, now a caller of this) so every code surface shares one
 // frame. It owns ONLY the frame — the menu-shell radius (same rung as
 // SettingsSection / SurfaceCard, so a code block next to a settings card lines
-// up), fill, edge, inset, mono type and the copy button. Highlighting is the
+// up), fill, the shared card edge rule (surfaceEdgeClass: no edge in dark
+// mode unless `bordered`), inset, mono type and the copy button. Highlighting is the
 // caller's: pass rendered markup through the default slot; without one the
 // `code` text is shown as-is.
 //
@@ -13,6 +14,7 @@
 // is a stable trailing sibling (top-aligned), so the block stays
 // fit-to-content without a reserved gap and the button does not jitter while
 // streaming content grows the width.
+import { surfaceEdgeClass } from '#/lib/surface'
 import { CopyButton } from '../copy-button'
 
 withDefaults(defineProps<{
@@ -37,17 +39,20 @@ withDefaults(defineProps<{
    * to separate real code lines.
    */
   wrap?: boolean
+  /** Keep the edge in dark mode when nested inside another card-colored surface (a dialog body). */
+  bordered?: boolean
 }>(), {
   width: 'full',
   wrap: false,
+  bordered: false,
 })
 </script>
 
 <template>
   <div
     data-slot="code-panel"
-    class="flex max-w-full items-start gap-1.5 overflow-hidden rounded-menu-shell border bg-card py-1 pl-3.5 pr-1.5"
-    :class="width === 'fit' ? 'w-fit' : 'w-full'"
+    class="flex max-w-full items-start gap-1.5 overflow-hidden rounded-menu-shell bg-card py-1 pl-3.5 pr-1.5"
+    :class="[surfaceEdgeClass(bordered), width === 'fit' ? 'w-fit' : 'w-full']"
   >
     <div
       class="min-w-0 py-1.5 font-mono text-label text-foreground"
@@ -66,7 +71,7 @@ withDefaults(defineProps<{
       :copied-label="copiedLabel"
       :failed-message="copyFailedMessage"
       icon-class="size-3.5"
-      class="shrink-0 text-muted-foreground focus-visible:ring-0 hover:text-foreground"
+      class="shrink-0 text-muted-foreground hover:text-foreground"
     />
   </div>
 </template>
