@@ -11,6 +11,11 @@
 // Only the edge WIDTH is set here. The color is `--border` from the base layer
 // (`* { @apply border-border }`), and ActionCard animates that color in
 // style.css — a `border-border` utility here would outrank and freeze it.
+//
+// `border-1` rather than the bare `border` token: markstream-vue ships an
+// unlayered `.markstream-vue .border { border-width: 1px }`, which outranks
+// every layered utility and re-adds the dark-mode edge to any card rendered
+// inside markdown (the chat code fence). Same CSS, a token it does not match.
 export function surfaceEdgeClass(bordered = false): string {
-  return bordered ? 'border' : 'border dark:border-0'
+  return bordered ? 'border-1' : 'border-1 dark:border-0'
 }
