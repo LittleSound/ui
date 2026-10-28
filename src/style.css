@@ -220,16 +220,14 @@
   [data-slot="input-otp-slot"][data-active="true"] {
     --field-edge: var(--field-edge-solid);
   }
-  /* The one hover exception: Textarea engage="hover" — an in-place editor that
-     wears the exact look of the content it replaced, so the edge is its only
-     sign of being a field and the pointer gets that sign before clicking in.
-     Same edge as focus; every other field stays focus-only. Invalid still wins. */
-  [data-slot="textarea"][data-engage="hover"]:hover:not(:disabled, [aria-invalid="true"]) {
-    --field-edge: var(--field-edge-solid);
+  /* Textarea rest="bare": no resting hairline, so an in-place editor renders
+     exactly like the content it replaced while unfocused. Only the rest color
+     is re-bound; focus and invalid still swap in their edges. */
+  [data-slot="textarea"][data-rest="bare"] {
+    --field-edge-rest: transparent;
   }
   /* Textarea surface="brand-tint" re-binds the solid edge on the element, so
-     every state that engages solid (focus, and hover under engage="hover")
-     picks it up; rest and invalid are untouched. */
+     focus picks it up; rest and invalid are untouched. */
   [data-slot="textarea"][data-surface="brand-tint"] {
     --field-edge-solid: var(--field-edge-brand-tint);
   }

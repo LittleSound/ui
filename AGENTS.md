@@ -379,11 +379,10 @@ peers", not "one door to somewhere else".
   hairline whose color swaps per state (never an outer ring):
   `--field-edge-rest` → `--field-edge-solid` (focus) / `--field-edge-engaged`
   (subtle) / `--destructive` (invalid).
-  - The one exception is opt-in: `<Textarea engage="hover">` also engages under
-    the pointer, with the same `--field-edge-solid`. It is for an in-place
-    editor that wears the exact look of the content it replaced (the chat
-    prompt edited inside its own bubble) — the edge is its only sign of being a
-    field. Forms and ordinary fields never use it.
+  - An in-place editor that must render exactly like the content it replaced
+    (the chat prompt edited inside its own bubble) drops the resting hairline
+    with `<Textarea rest="bare">`; focus and invalid still draw the edge. Forms
+    and ordinary fields keep the default `rest="edge"`.
   - A Textarea painted on a brand-tinted surface (that same bubble) declares it
     with `surface="brand-tint"`: its solid edge becomes `--field-edge-brand-tint`
     — the neutral near-black in light (a brand edge muddies into a pale tint),
