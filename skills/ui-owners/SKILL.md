@@ -239,9 +239,9 @@ i18n)、`width: 'fit' | 'full'`(fit 贴合代码,聊天用;full 撑满行,对话
 label 定尺寸、靠左锚定会单侧裁字,这些坑都已收进组件,见其头注)。
 
 **InfoHint**(`@felinic/ui` 原语,非 apps/web owner,顺带登记防重造)
-只负责解释的 ⓘ:12px(图标阶梯的文字档)、灰色,悬停或键盘聚焦弹出 Tooltip(默认向上)。
-它不是按钮,点了要执行操作的用 Button;和所有 Tooltip 一样触屏看不到,关键信息不能只放在
-里面。Props: `text`(同时是无障碍名称,写成完整句子)、`side?`。不要再手写 `Info` 图标 +
+只负责解释的 ⓘ:14px(比文字档高一档,细线圆圈同高时显小)、灰色,悬停、键盘聚焦或轻点
+弹出 Tooltip(默认向上)。它不是按钮,点了要执行操作的用 Button;读者得主动去看,关键信息
+不能只放在里面。Props: `text`(同时是无障碍名称,写成完整句子)、`side?`。不要再手写 `Info` 图标 +
 TooltipTrigger,也不要在调用处改它的尺寸或颜色。
 
 **MetricReadout** · `settings/metric-readout.vue`

@@ -9,9 +9,9 @@ export const infoHintSpec: ComponentSpec = {
   name: 'InfoHint',
   interactive: true,
   description:
-    'A muted ⓘ glyph that only explains: hover or keyboard focus opens a short Tooltip. Not an action, so not a button.',
+    'A muted ⓘ glyph that only explains: hover, keyboard focus or a tap opens a short Tooltip. Not an action, so not a button.',
   descriptionZh:
-    '只负责解释的灰色 ⓘ 图标：悬停或键盘聚焦时弹出简短的 Tooltip。它不是操作，所以不是按钮。',
+    '只负责解释的灰色 ⓘ 图标：悬停、键盘聚焦或轻点时弹出简短的 Tooltip。它不是操作，所以不是按钮。',
   controls: [
     { kind: 'enum', key: 'side', label: 'Side', options: tooltipSideKeys, default: 'top', display: 'segmented' },
     {
@@ -35,14 +35,14 @@ export const infoHintSpec: ComponentSpec = {
     },
   ],
   render: state => h(InfoHint, { text: String(state.text), side: state.side as never }),
-  usage: `InfoHint carries supplementary explanation only — like any Tooltip it is unreachable on touch, so nothing essential may live only inside it.
+  usage: `InfoHint carries supplementary explanation only — a reader has to go looking for it, so nothing essential may live only inside it.
 
 - Use it when a glyph's whole job is to explain. If clicking should DO something, that is a Button.
-- The glyph is 12px (the icon ladder's text rung) and muted; do not resize or recolor it per call site.
+- The glyph is 14px and muted — one rung above the text rung, because a thin outline circle looks smaller than text of the same height. Do not resize or recolor it per call site.
 - The text is also the accessible name — write it as a full sentence.`,
-  usageZh: `InfoHint 只放补充说明——和所有 Tooltip 一样，触屏上看不到，所以关键信息绝不能只放在里面。
+  usageZh: `InfoHint 只放补充说明——读者得主动去看才能看到，所以关键信息绝不能只放在里面。
 
 - 图标的唯一作用是解释时用它；点了要执行操作的，应该用 Button。
-- 图标固定 12px（图标尺寸阶梯的文字档）、灰色；不要在调用处改尺寸或颜色。
+- 图标固定 14px、灰色——比文字档高一档，因为细线圆圈在同样高度下看起来比文字小。不要在调用处改尺寸或颜色。
 - 提示文字同时是无障碍名称，写成完整的一句话。`,
 }
